@@ -13,6 +13,7 @@ interface ModelProps {
     onSpinAnimationsReady: (playSpin: () => void) => void
     isInteractive: boolean;
     playWaveLoop: boolean;
+    zoom: number;
 }
 
 const Model = ({
@@ -24,6 +25,7 @@ const Model = ({
     setCurrentCap,
     isInteractive = true,
     playWaveLoop = false,
+    zoom = 1
 }: ModelProps) => {
     // followMouse({ camera });
 
@@ -31,14 +33,15 @@ const Model = ({
         handlePointerEnter,
         handlePointerLeave,
         playWaveAnimation,
-        playSpinAnimation
+        playSpinAnimation,
     } = keycapHoverAction({
         scene,
         animations,
         camera,
         isInteractive,
         playWaveLoop,
-        setCurrentCap
+        setCurrentCap,
+        zoom
     });
     onWaveAnimationsReady(playWaveAnimation)
     onSpinAnimationsReady(playSpinAnimation)

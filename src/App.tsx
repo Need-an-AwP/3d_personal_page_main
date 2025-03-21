@@ -13,6 +13,20 @@ import { CardSpotlight } from "@/components/ui/card-spotlight";
 function App() {
     const [isInteractive, setIsInteractive] = useState(false);
     const [scrollSegment, setScrollSegment] = useState<number>(0);
+    const [isLargeScreen, setIsLargeScreen] = useState(false);
+    const [zoom, setZoom] = useState<number>(0.8);
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(min-width: 1024px)');// lg
+        setIsLargeScreen(mediaQuery.matches);
+
+        const handleResize = (e: MediaQueryListEvent) => {
+            setIsLargeScreen(e.matches);
+        };
+
+        mediaQuery.addEventListener('change', handleResize);
+        return () => mediaQuery.removeEventListener('change', handleResize);
+    }, []);
 
 
     useEffect(() => {
@@ -35,24 +49,39 @@ function App() {
 
         window.addEventListener('scroll', handleScroll);
 
-
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    useEffect(()=>{
+        if (scrollSegment === 0){
+            if(isLargeScreen){
+                setZoom(1.2)
+            }else {
+                setZoom(0.5)
+            }
+        }else if (scrollSegment === 1){
+            if(isLargeScreen){
+                setZoom(0.8)
+            }else {
+                setZoom(0.7)
+            }
+        }
+    },[scrollSegment, isLargeScreen])
 
 
     return (
         <>
             <Toaster />
             <BackgroundBeams className="fixed z-[-10]" />
-            <div className="mt-[9vh] z-30">
-                <Title />
+            <div className="lg:mt-[24vh] lg:ml-[15vw] mt-[9vh] z-30 transition-all duration-300 ease-in-out">
+                <Title className="" horizontalCentering={!isLargeScreen}/>
             </div>
             <div className={`flex flex-col items-center left-1/2 -translate-x-1/2
                 ${isInteractive ? 'fixed top-0 -translate-y-1/1' : 'absolute bottom-0 translate-y-1/4'}`}>
                 <ScrollIcon className="w-[50px] " />
-                <p className="text-md opacity-20 translate-y-9">
+                <p className="text-lg opacity-20 translate-y-9">
                     HOVER TO INTERACT
                 </p>
             </div>
@@ -62,23 +91,26 @@ function App() {
                 transition-all duration-300 ease-in-out _border-2 _border-red-500
                 ${isInteractive ? 'pointer-events-auto' : 'pointer-events-none z-[-10]'}`}
                 style={{
-                    transform: scrollSegment === 0 ? 'translate(0, 20%)' : (scrollSegment === 1 ? 'none' : 'translate(0, -50%)'),
+                    transform: scrollSegment === 0 ?
+                        (isLargeScreen ? 'translate(30%, 30%)' : 'translate(0, 20%)') :
+                        (scrollSegment === 1 ? 'none' : 'translate(0, -50%)'),
                 }}
             >
                 <Keyboard
                     isInteractive={isInteractive}
                     playWaveLoop={scrollSegment === 0}
+                    zoom={zoom}
                 />
             </div>
 
 
-            
+
             <div className={`relative space-y-4  ${scrollSegment === 2 ? 'z-10' : 'z-[-10]'}`}>
                 {/* placeholder for scroll */}
                 {Array.from({ length: 100 }).map((_, index) => (
                     <div key={index} className="w-0 h-4 bg-red-500"></div>
                 ))}
-                
+
                 <div className="absolute bottom-0 left-0 w-full flex flex-col">
                     <div className="mx-auto mb-[20vh] flex flex-row gap-4">
                         <CardSpotlight className="w-[300px] aspect-[3/4]">

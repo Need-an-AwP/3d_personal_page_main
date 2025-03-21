@@ -49,7 +49,7 @@ export default function Sns({ className }: { className: string }) {
 
     return (
         <div className={cn(
-            "flex justify-center gap-2 w-fit mx-auto mt-4 bg-neutral-500 bg-opacity-10 rounded-lg p-1",
+            "flex justify-center gap-2 w-fit bg-neutral-500 bg-opacity-10 rounded-lg p-1",
             className // equal !important
         )}>
             {/* github */}

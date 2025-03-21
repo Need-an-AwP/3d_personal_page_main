@@ -6,10 +6,12 @@ import Model from './Model';
 
 const Keyboard = ({
     isInteractive = true,
-    playWaveLoop = false
+    playWaveLoop = false,
+    zoom = 1
 }: {
     isInteractive: boolean
     playWaveLoop: boolean
+    zoom: number
 }) => {
     const filePath = '/keyboard.glb'
     const { scene, animations, cameras } = useGLTF(filePath, true);//enable compression
@@ -86,6 +88,7 @@ const Keyboard = ({
                     isInteractive={isInteractive}
                     playWaveLoop={playWaveLoop}
                     setCurrentCap={setCurrentCap}
+                    zoom={zoom}
                 />
             </Canvas>
             {/* <div className="absolute top-0 left-0">

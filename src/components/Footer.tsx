@@ -5,7 +5,7 @@ const Footer = () => {
                 ©2025 KLZ
             </div>
 
-            <div className="flex flex-row justify-between items-center text-sm text-neutral-500 gap-4">
+            <div className="flex flex-row justify-between items-center text-sm text-neutral-500 gap-5">
                 <div className="space-y-2 text-right">
                     <p>
                         Creativity from <a href="https://www.nareshkhatri.site/" target="_blank" rel="noopener noreferrer" className="underline">Naresh Khatri</a>

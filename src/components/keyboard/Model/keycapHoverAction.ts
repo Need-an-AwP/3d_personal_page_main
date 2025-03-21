@@ -7,21 +7,25 @@ interface Keycap {
     keycap: THREE.Object3D;
 }
 
-export default function keycapHoverAction({
-    scene,
-    animations,
-    camera,
-    isInteractive,
-    playWaveLoop,
-    setCurrentCap
-}: {
+interface KeycapHoverActionProps {
     scene: THREE.Group;
     animations: THREE.AnimationClip[];
     camera: THREE.PerspectiveCamera;
     isInteractive: boolean;
     playWaveLoop: boolean;
     setCurrentCap: (cap: string | null) => void;
-}) {
+    zoom: number;
+}
+
+export default function keycapHoverAction({
+    scene,
+    animations,
+    camera,
+    isInteractive,
+    playWaveLoop,
+    setCurrentCap,
+    zoom: targetZoom
+}: KeycapHoverActionProps) {
     const mixerRef = useRef<THREE.AnimationMixer | null>(null);
     const cameraMixerRef = useRef<THREE.AnimationMixer | null>(null);
     const animationSequenceRef = useRef<{
@@ -152,10 +156,10 @@ export default function keycapHoverAction({
     }
 
     const playWaveAnimation = (reverse: boolean = false) => {
-        const sequence = reverse ? 
-            animationSequenceRef.current.reverse : 
+        const sequence = reverse ?
+            animationSequenceRef.current.reverse :
             animationSequenceRef.current.forward;
-            
+
         if (sequence.length > 0) {
             sequence.forEach(({ action, delay }) => {
                 setTimeout(() => {
@@ -211,17 +215,17 @@ export default function keycapHoverAction({
     });
 
 
-    const [targetZoom, setTargetZoom] = useState<number>(1);
+    // const [targetZoom, setTargetZoom] = useState<number>(1);
 
     useEffect(() => {
         if (!playWaveLoop) {
-            setTargetZoom(0.8)
+            // setTargetZoom(0.8)
             if (waveIntervalRef.current) {
                 clearInterval(waveIntervalRef.current)
                 waveIntervalRef.current = null
             }
         } else {
-            setTargetZoom(0.5)
+            // setTargetZoom(0.5)
             playWaveAnimation()
             const waveInterval = setInterval(() => {
                 const r = Math.round(Math.random());
@@ -244,7 +248,7 @@ export default function keycapHoverAction({
         handlePointerEnter,
         handlePointerLeave,
         playWaveAnimation,
-        playSpinAnimation
+        playSpinAnimation,
     }
 }
 
