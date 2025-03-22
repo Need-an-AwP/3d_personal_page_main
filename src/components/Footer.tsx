@@ -12,7 +12,7 @@ const Footer = () => {
                     </p>
                     <p>Deployed on Cloudflare</p>
                 </div>
-                <div className="w-1 h-[50px] bg-neutral-500 rounded-full"></div>
+                <div className="w-0.5 h-[50px] bg-neutral-500 rounded-full"/>
                 <div className="text-left">
                     Made with<br />
                     <a href="https://ui.shadcn.com/" target="_blank" rel="noopener noreferrer" className="underline">shadcn/ui</a><br />

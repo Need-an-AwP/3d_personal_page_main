@@ -17,6 +17,8 @@ import "../App.css"
 import GithubSnake from "@/components/GithubSnake"
 import { toast } from "sonner"
 // import { FloatingDock } from "@/components/floating-dock";
+import "atropos/atropos.css"
+import Atropos from 'atropos/react'
 
 
 
@@ -28,23 +30,24 @@ export default function Sns({ className }: { className: string }) {
     const [steamImgLoading, setSteamImgLoading] = useState(true);
     const [weChatImg, setWeChatImg] = useState("");
     const [weChatImgLoading, setWeChatImgLoading] = useState(true);
+
     // preload images
     useEffect(() => {
-        let img = new Image();
-        img.src = "https://card.yuy1n.io/card/76561198188223899/gradient3,en,badge";
-        img.onload = () => {
+        let steamImg = new Image();
+        steamImg.src = "https://card.yuy1n.io/card/76561198188223899/gradient3,en,badge";
+        steamImg.onload = () => {
             setSteamImgLoading(false)
-            setSteamImg(img.src)
+            setSteamImg(steamImg.src)
         };
-        img.onerror = () => { setSteamImgLoading(false) };
+        steamImg.onerror = () => { setSteamImgLoading(false) };
 
-        img = new Image();
-        img.src = "https://wokerd1-blue-math-ewq.1790414525klz.workers.dev/api/image?id=14";
-        img.onload = () => {
+        let weChatImg = new Image();
+        weChatImg.src = "https://wokerd1-blue-math-ewq.1790414525klz.workers.dev/api/image?id=14";
+        weChatImg.onload = () => {
             setWeChatImgLoading(false)
-            setWeChatImg(img.src)
+            setWeChatImg(weChatImg.src)
         };
-        img.onerror = () => { setWeChatImgLoading(false) };
+        weChatImg.onerror = () => { setWeChatImgLoading(false) };
     }, []);
 
     return (
@@ -192,17 +195,26 @@ export default function Sns({ className }: { className: string }) {
                     </DrawerHeader>
 
                     <div className="w-full h-full flex flex-col justify-center items-center text-center my-8">
-                        {isLoading ?
+                        {steamImgLoading ?
                             <Skeleton className="w-[400px] h-[140px] rounded-lg" />
                             :
-                            <img
-                                width="400"
-                                height="140"
-                                src={steamImg}
-                                onClick={() => window.open('https://steamcommunity.com/profiles/76561198188223899/', '_blank', 'noopener,noreferrer')}
-                                role="button"
-                                aria-label="access steam profile"
-                            />
+                            <Atropos
+                                className="w-[400px]"
+                                rotateXMax={10}
+                                rotateYMax={10}
+                                shadowScale={0.9}
+                            >
+                                <img
+                                    width="400"
+                                    height="140"
+                                    src={steamImg}
+                                    onClick={() => window.open('https://steamcommunity.com/profiles/76561198188223899/', '_blank', 'noopener,noreferrer')}
+                                    role="button"
+                                    aria-label="access steam profile"
+                                    data-atropos-offset="0"
+                                    className="rounded-lg"
+                                />
+                            </Atropos>
                         }
                         <p className="text-sm text-neutral-500 mt-4">powered by <a href="https://steamcard.vercel.app/" target="_blank" rel="noopener noreferrer">https://steamcard.vercel.app/</a></p>
                     </div>

@@ -76,7 +76,7 @@ function App() {
             <Toaster />
             <BackgroundBeams className="fixed z-[-10]" />
             <div className="lg:mt-[24vh] lg:ml-[15vw] mt-[9vh] z-30 transition-all duration-300 ease-in-out">
-                <Title className="" horizontalCentering={!isLargeScreen}/>
+                <Title horizontalCentering={!isLargeScreen}/>
             </div>
             <div className={`flex flex-col items-center left-1/2 -translate-x-1/2
                 ${isInteractive ? 'fixed top-0 -translate-y-1/1' : 'absolute bottom-0 translate-y-1/4'}`}>

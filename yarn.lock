@@ -1080,6 +1080,11 @@ aria-hidden@^1.2.4:
   dependencies:
     tslib "^2.0.0"
 
+atropos@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/atropos/-/atropos-2.0.2.tgz#8024e845487a69662b70fdb83f5e81039c934def"
+  integrity sha512-8f0u0hEOlBTWTSvzY17TcHuQjxUIpkTBq70/I4+UF5B43ORtOoRjm8TPBYEgLM8Ba9AWf6PDtkagbYoybdjaKg==
+
 balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
