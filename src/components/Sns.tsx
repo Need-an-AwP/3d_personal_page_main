@@ -25,7 +25,6 @@ import Atropos from 'atropos/react'
 const snsSvgClassName = "w-6 h-6 fill-neutral-400 hover:fill-white"
 
 export default function Sns({ className }: { className: string }) {
-    const [isLoading, setIsLoading] = useState(true);
     const [steamImg, setSteamImg] = useState("");
     const [steamImgLoading, setSteamImgLoading] = useState(true);
     const [weChatImg, setWeChatImg] = useState("");

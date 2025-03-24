@@ -57,7 +57,7 @@ function App() {
     useEffect(()=>{
         if (scrollSegment === 0){
             if(isLargeScreen){
-                setZoom(1.2)
+                setZoom(0.95)
             }else {
                 setZoom(0.5)
             }
@@ -92,7 +92,7 @@ function App() {
                 ${isInteractive ? 'pointer-events-auto' : 'pointer-events-none z-[-10]'}`}
                 style={{
                     transform: scrollSegment === 0 ?
-                        (isLargeScreen ? 'translate(30%, 30%)' : 'translate(0, 20%)') :
+                        (isLargeScreen ? 'translate(20%, 20%) scale(1.2)' : 'translate(0, 20%)') :
                         (scrollSegment === 1 ? 'none' : 'translate(0, -50%)'),
                 }}
             >
