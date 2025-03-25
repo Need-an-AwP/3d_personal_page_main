@@ -6,7 +6,6 @@ import Keyboard from '@/components/keyboard'
 import ScrollIcon from '@/components/ui/scroll-icon'
 import { Toaster } from "@/components/ui/sonner"
 import Footer from '@/components/Footer'
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { CardSpotlight } from "@/components/ui/card-spotlight";
 
 
@@ -92,7 +91,7 @@ function App() {
                 ${isInteractive ? 'pointer-events-auto' : 'pointer-events-none z-[-10]'}`}
                 style={{
                     transform: scrollSegment === 0 ?
-                        (isLargeScreen ? 'translate(20%, 20%) scale(1.2)' : 'translate(0, 20%)') :
+                        (isLargeScreen ? 'translate(20%, 20%)' : 'translate(0, 20%)') :
                         (scrollSegment === 1 ? 'none' : 'translate(0, -50%)'),
                 }}
             >
