@@ -7,6 +7,7 @@ import ScrollIcon from '@/components/ui/scroll-icon'
 import { Toaster } from "@/components/ui/sonner"
 import Footer from '@/components/Footer'
 import { CardSpotlight } from "@/components/ui/card-spotlight";
+import OiiaiCat from '@/components/OiiaiCat'
 
 
 function App() {
@@ -53,21 +54,21 @@ function App() {
         };
     }, []);
 
-    useEffect(()=>{
-        if (scrollSegment === 0){
-            if(isLargeScreen){
+    useEffect(() => {
+        if (scrollSegment === 0) {
+            if (isLargeScreen) {
                 setZoom(0.95)
-            }else {
+            } else {
                 setZoom(0.5)
             }
-        }else if (scrollSegment === 1){
-            if(isLargeScreen){
+        } else if (scrollSegment === 1) {
+            if (isLargeScreen) {
                 setZoom(0.8)
-            }else {
+            } else {
                 setZoom(0.7)
             }
         }
-    },[scrollSegment, isLargeScreen])
+    }, [scrollSegment, isLargeScreen])
 
 
     return (
@@ -75,7 +76,7 @@ function App() {
             <Toaster />
             <BackgroundBeams className="fixed z-[-10]" />
             <div className="lg:mt-[24vh] lg:ml-[15vw] mt-[9vh] z-30 transition-all duration-300 ease-in-out">
-                <Title horizontalCentering={!isLargeScreen}/>
+                <Title horizontalCentering={!isLargeScreen} />
             </div>
             <div className={`flex flex-col items-center left-1/2 -translate-x-1/2
                 ${isInteractive ? 'fixed top-0 -translate-y-1/1' : 'absolute bottom-0 translate-y-1/4'}`}>
@@ -126,7 +127,10 @@ function App() {
                         </CardSpotlight>
 
                     </div>
-                    <div className=" bg-white/5 backdrop-blur-sm">
+                    <div className="relative bg-white/5 backdrop-blur-sm">
+                        <div className="absolute top-0 lg:left-0 lg:translate-x-0 left-1/2 -translate-x-1/2 h-[90px] translate-y-[-70px]">
+                            <OiiaiCat />
+                        </div>
                         <Footer />
                     </div>
                 </div>
